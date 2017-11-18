@@ -1,5 +1,5 @@
 //Vende recursos por pontos premiun
-var altAldTempo = aleatorio(1000, 10000);
+var altAldTempo = aleatorio(10000, 100000);
 var qtdDisponivelTransporte;
 
 //recursos disponiveis na aldeia
