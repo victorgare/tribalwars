@@ -54,24 +54,36 @@ var inputVenderFerro;
     var qtdVenderArgila = (calcularQuantidadeVender(capacidadeArgila, estoqueArgila, qtdArgilaAldeia, custoArgila) * custoArgila);
     var qtdVenderFerro = (calcularQuantidadeVender(capacidadeFerro, estoqueFerro, qtdFerroAldeia, custoFerro) * custoFerro);
 
+    var algoPraVender = false;
+
     if (qtdVenderFerro > 0 && qtdVenderFerro <= qtdDisponivelTransporte) {
         inputVenderFerro.val(qtdVenderFerro)
+        algoPraVender = true;
     } else if (qtdVenderArgila > 0 && qtdVenderArgila <= qtdDisponivelTransporte) {
         inputVenderArgila.val(qtdVenderArgila);
+        algoPraVender = true;
     } else if (qtdVenderMadeira > 0 && qtdVenderMadeira <= qtdDisponivelTransporte) {
         inputVenderMadeira.val(qtdVenderMadeira);
-    }else{
+        algoPraVender = true;
+    } else {
         console.log("Nada para vender hoje");
     }
 
-    $(".btn-premium-exchange-buy").click(function () {
-        $(".btn-confirm-yes").click();
-    });
-
-
-
+    if (algoPraVender) {
+        setInterval(calcularMelhorOferta, 2000);
+    }
     setInterval(altAldeia, altAldTempo);
 })();
+
+function calcularMelhorOferta() {
+    $(".btn-premium-exchange-buy").click();
+
+    setInterval(confirmarVenda, 1000);
+}
+
+function confirmarVenda() {
+    $(".btn-confirm-yes").click();
+}
 
 function calcularQuantidadeVender(capacidade, estoque, qtdDisponivel, custo) {
     var quantidadeVender = 0;
