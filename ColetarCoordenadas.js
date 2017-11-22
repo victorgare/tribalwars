@@ -16,10 +16,8 @@ $(document).ready(function () {
 
     div.appendChild(button);
 
-    var continente = document.getElementById("continent_id");
-    continente.appendChild(div);
-    //continente.insertBefore(div, body.firstChild);
-    //alert(coords);
+    var continente = document.getElementById("content_value");
+    continente.insertBefore(div, continente.firstChild);
 });
 
 function getCoordedadas() {
