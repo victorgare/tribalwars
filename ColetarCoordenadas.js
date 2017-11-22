@@ -1,32 +1,51 @@
-var villages = TWMap.villages;
-var vk = TWMap.villageKey;
-var key = {};
-var contador = 0;
-var bbs = "";
+$(document).ready(function () {
+    //let coords = getCoordedadas();
 
-$( document ).ready(function() {
-    for(j in vk){
+
+    var button = document.createElement('button');
+
+    button.addEventListener("click", getCoordedadas);
+    button.innerText = "Coletar Coordenadas";
+    button.style.textAlign = "center";
+    button.className = "btn btn-instant-free";
+
+    var div = document.createElement('div');
+
+    div.style.display = "unset";
+    div.style.marginLeft = "10px"
+
+    div.appendChild(button);
+
+    var continente = document.getElementById("continent_id");
+    continente.appendChild(div);
+    //continente.insertBefore(div, body.firstChild);
+    //alert(coords);
+});
+
+function getCoordedadas() {
+    let villages = TWMap.villages;
+    let vk = TWMap.villageKey;
+    let key = {};
+    let bbs = "";
+    let contador = 0;
+
+    for (j in vk) {
         key[contador] = vk[j];
         contador++;
     }
 
     contador = 0;
-    for(var k in key){
+    for (var k in key) {
         var village = villages[key[k]];
-        if(village.owner == "0"){
+        if (village.owner == "0") {
             var coordAtual = TWMap.CoordByXY(key[k]);
-            console.log(coordAtual[0]);
 
             bbs += coordAtual[0] + "|" + coordAtual[1] + " ";
-            //TWMap.mapHandler.onClick(coordAtual[0], coordAtual[1], new Event('click'));
-
-            //var url = TWMap.urls.ctx["mp_farm_a"].replace(/__village__/, villageA.id).replace(/__source__/, game_data.village.id);
-
-            //TribalWars.get(url, null, function(a){TWMap.context.ajaxDone(null,url);}, undefined, undefined);
 
             contador++;
         }
     }
 
     alert(bbs);
-});
+    return bbs;
+}
