@@ -32,7 +32,7 @@ Este script cria um botão perto da informação da númeração do continente, 
 ## Vender Recursos
 
 * Deve ser executado no mercado na parte de vender recursos por PPs!
-* [Instalar Coletor de Coordenadas](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/VenderRecursos.user.js)
+* [Instalar Vender Recursos](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/VenderRecursos.user.js)
 
 Este script calcula a quantidade de recursos que você pode vender e cria uma oferta uma oferta abaixo para vender recursos por PPs.
 
