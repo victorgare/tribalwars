@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Coletar Coordenadas Mapa
-// @version      1.3
+// @version      2.0
 // @description  Coleta as coordenadas ao redor do mapa
 // @author       Victor Garé
 // @include      https://*&screen=map*
