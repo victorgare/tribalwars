@@ -6,7 +6,7 @@
 // @include      https://*&screen=map*
 // @require https://code.jquery.com/jquery-2.2.4.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ColetarCoordenadas.user.js
-// @updateURL   https://raw.githubusercontent.com/victorgare/tribalwars/master/UserSCript/ColetarCoordenadas.user.js
+// @updateURL   https://github.com/victorgare/tribalwars/raw/master/UserScript/ColetarCoordenadas.user.js
 // @grant        none
 // ==/UserScript==
 
