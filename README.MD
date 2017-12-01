@@ -2,6 +2,11 @@
 
 Repositórios de scripts usados para TribalWars
 
+## Sumario
+
+[Coletar Coordenadas - Barbaras](https://github.com/victorgare/tribalwars#coletar-coordenadas---barbaras)
+[Vender Recursos](https://github.com/victorgare/tribalwars#vender-recursos)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
