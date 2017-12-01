@@ -5,8 +5,8 @@
 // @author       Victor Garé
 // @include      https://*&screen=map*
 // @require https://code.jquery.com/jquery-2.2.4.min.js
-// @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/ColetarCoordenadas.js
-// @updateURL   https://raw.githubusercontent.com/victorgare/tribalwars/master/ColetarCoordenadas.js
+// @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/ColetarCoordenadas.user.js
+// @updateURL   https://raw.githubusercontent.com/victorgare/tribalwars/master/ColetarCoordenadas.user.js
 // @grant        none
 // ==/UserScript==
 
