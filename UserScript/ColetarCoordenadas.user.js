@@ -13,8 +13,6 @@
 $(document).ready(function () {
     //let coords = getCoordedadas();
 
-    alert('atualizacao');
-
     var button = document.createElement('button');
 
     button.addEventListener("click", getCoordedadas);
