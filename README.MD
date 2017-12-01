@@ -4,8 +4,8 @@ Repositórios de scripts usados para TribalWars
 
 ## Sumario
 
-[Coletar Coordenadas - Barbaras](https://github.com/victorgare/tribalwars#coletar-coordenadas---barbaras)
-[Vender Recursos](https://github.com/victorgare/tribalwars#vender-recursos)
+* [Coletar Coordenadas - Barbaras](https://github.com/victorgare/tribalwars#coletar-coordenadas---barbaras)
+* [Vender Recursos](https://github.com/victorgare/tribalwars#vender-recursos)
 
 ## Getting Started
 
