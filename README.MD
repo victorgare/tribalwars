@@ -6,9 +6,15 @@ Repositórios de scripts usados para TribalWars
 
 * [Coletar Coordenadas - Barbaras](https://github.com/victorgare/tribalwars#coletar-coordenadas---barbaras)
 * [Vender Recursos](https://github.com/victorgare/tribalwars#vender-recursos)
+* [Auto Fake](https://github.com/victorgare/tribalwars#auto-fake)
+* [Script de Intel](https://github.com/victorgare/tribalwars#script-de-intel)
+* [Farm Mapa](https://github.com/victorgare/tribalwars#farm-mapa)
+* [Identificador de Ataques](https://github.com/victorgare/tribalwars#identificador-de-ataques)
+* [Planejador de Comandos](https://github.com/victorgare/tribalwars#planejador-de-comandos)
+* [Farm Assistente de Saque](https://github.com/victorgare/tribalwars#farm-assistente-de-saque)
 
 
-### Prerequisites
+### Pre-requisitos
 
 Instale a extensão Tampermonkey
 
@@ -44,7 +50,7 @@ Este script calcula a quantidade de recursos que você pode vender e cria uma of
 **Ordem de venda dos recursos**
 
 O script sempre vende os recursos nesta ordem:
-```
+```javascript
 Ferro
 Argila
 Madeira
@@ -62,7 +68,7 @@ Este script envia ataques fakes nas aldeias configuradas
 
 A quantidade de tropas pode ser configurada alterando os valores abaixos dentro do script (Não disponivel para arquivos e arqueiros a cavalo)
 
-```
+```javascript
 var FakesPorAldeia = 30; //quantidade de fakes por aldiea
 var sp = 0; // lanceiros
 var sw = 0; // espadachins
@@ -79,7 +85,7 @@ var ra = 1; // ariete
 
 As aldeias que receberam os ataques podem ser configuradas alterando o valor da variavel abaixo, separando as coordenadas por um espaço
 
-```
+```javascript
 var coords = '111|111 222|222 333|333';
 ```
 
@@ -125,3 +131,11 @@ O script permite que você configure um horário de chegada e assim o script env
 **Atenção**
 
 Devido a delays de internet, o script não é muito preciso
+
+
+## Farm Assistente de Saque
+
+* Deve ser executado na pagina do assistente de saque
+* [Instalar Farm Assistente de Saque](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/FarmAssistenteSaque.user.js)
+
+Envia comandos usando a configuração **A** do assistente de saque

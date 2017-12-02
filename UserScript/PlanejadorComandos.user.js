@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         150 - Planejador XPTO 
 // @author       Vende se
+// @version      0.1
 // @include      https://*screen=place&try=confirm*
 // @require https://code.jquery.com/jquery-2.2.4.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/PlanejadorComandos.user.js

@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         Identificador de ATK
+// @version      0.1
 // @include      https://*&screen=overview_villages&mode=incomings*
 // @require https://code.jquery.com/jquery-2.2.4.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/IdentificadorAtaques.user.js
