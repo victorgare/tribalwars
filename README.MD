@@ -12,6 +12,7 @@ Repositórios de scripts usados para TribalWars
 * [Identificador de Ataques](https://github.com/victorgare/tribalwars#identificador-de-ataques)
 * [Planejador de Comandos](https://github.com/victorgare/tribalwars#planejador-de-comandos)
 * [Farm Assistente de Saque](https://github.com/victorgare/tribalwars#farm-assistente-de-saque)
+* [Coletar Coordenadas pelo Click](https://github.com/victorgare/tribalwars#coletar-coordenadas-pelo-click)
 
 
 ### Pre-requisitos
@@ -139,3 +140,10 @@ Devido a delays de internet, o script não é muito preciso
 * [Instalar Farm Assistente de Saque](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/FarmAssistenteSaque.user.js)
 
 Envia comandos usando a configuração **A** do assistente de saque
+
+## Coletar Coordenadas pelo Click
+
+* Deve ser executado no mapa
+* [Instalar Coletar Coordenadas pelo Click](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ColetarCoordsClick.user.js)
+
+Adiciona um local onde as coordenadas das aldeias clicadas seram armazenadas. Basta clicar em qualquer aldeia e as coordenadas são adicionadas nesta area
