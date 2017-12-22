@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Auto Farm
-// @version      0.1
+// @version      0.2
 // @include      https://*&screen=am_farm*
 // @require https://code.jquery.com/jquery-2.2.4.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/FarmAssistenteSaque.user.js
