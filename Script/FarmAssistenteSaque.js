@@ -52,6 +52,6 @@ function altAldeia() {
     document.getElementById('village_switch_left').click();
 
     //$('#village_switch_left').click();
-    location.reload();
+    //location.reload();
 }
 setInterval(altAldeia, altAldTempo);
