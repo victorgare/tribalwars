@@ -110,7 +110,7 @@ function calcularCusto(tipoRecurso) {
 function altAldeia() {
     //$('.arrowRight').click();
     //$('.groupRight').click();
-    location.reload();
+    location.reload(true);
 }
 
 function aleatorio(superior, inferior) {

@@ -13,6 +13,7 @@ Repositórios de scripts usados para TribalWars
 * [Planejador de Comandos](https://github.com/victorgare/tribalwars#planejador-de-comandos)
 * [Farm Assistente de Saque](https://github.com/victorgare/tribalwars#farm-assistente-de-saque)
 * [Coletar Coordenadas pelo Click](https://github.com/victorgare/tribalwars#coletar-coordenadas-pelo-click)
+* [ContinuousRecruting](https://github.com/victorgare/tribalwars#continuous-recruting)
 
 
 ### Pre-requisitos
@@ -147,3 +148,24 @@ Envia comandos usando a configuração **A** do assistente de saque
 * [Instalar Coletar Coordenadas pelo Click](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ColetarCoordsClick.user.js)
 
 Adiciona um local onde as coordenadas das aldeias clicadas seram armazenadas. Basta clicar em qualquer aldeia e as coordenadas são adicionadas nesta area
+
+## Continuous Recruting
+
+* Deve ser executado na tela de recrutar da aldeia!
+* [Instalar Continuous Recruting](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ContinuousRecruting.user.js)
+
+O script verifica se há a unidade desejada na fila e caso não, adiciona 1 a fila de recrut (sim, apenas uma unidade), basta alterar o valor de alguma das variáveis abaixo para "true" e o script ira recrutar
+
+```javascript
+var lanca = false;
+var espada = false;
+var barbaro = false;
+var explorador = false;
+var cavalariaLeve = false;
+var cavalariaPesada = false;
+var catapulta = false;
+var ariete = false;
+```
+
+**ATENÇÃO**
+O script não tem limite de recrut!

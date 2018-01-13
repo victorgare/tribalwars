@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Vende Recursos
-// @version      0.1
+// @version      0.2
 // @description  Vende recursos por PPs!
 // @author       Victor Garé
 // @include https://*&screen=market&mode=exchange*
@@ -123,7 +123,7 @@ function calcularCusto(tipoRecurso) {
 function altAldeia() {
     //$('.arrowRight').click();
     //$('.groupRight').click();
-    location.reload();
+    location.reload(true);
 }
 
 function aleatorio(superior, inferior) {
