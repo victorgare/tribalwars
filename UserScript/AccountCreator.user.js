@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Account Cretor
-// @version      0.1
+// @version      0.2
 // @description  Cria contas fakes para o famoso mar de BBs
 // @author       Victor Garé
 // @include https://*?ref=player_invite_linkrl*
@@ -12,7 +12,7 @@
 // @run-at document-end
 // ==/UserScript==
 
-var url = ""
+var url = "";
 var mundo = "";
 
 const caracteres = "abcdefghijklmnopqrstuvxzwy";
