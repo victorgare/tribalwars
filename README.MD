@@ -14,6 +14,7 @@ Repositórios de scripts usados para TribalWars
 * [Farm Assistente de Saque](https://github.com/victorgare/tribalwars#farm-assistente-de-saque)
 * [Coletar Coordenadas pelo Click](https://github.com/victorgare/tribalwars#coletar-coordenadas-pelo-click)
 * [ContinuousRecruting](https://github.com/victorgare/tribalwars#continuous-recruting)
+* [AccountCreator](https://github.com/victorgare/tribalwars#account-creator)
 
 
 ### Pre-requisitos
@@ -169,3 +170,18 @@ var ariete = false;
 
 **ATENÇÃO**
 O script não tem limite de recrut!
+
+## Account Creator
+
+* Deve ser executado no link de criação de conta!
+* [Instalar Account Creator](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/AccountCreator.user.js)
+
+Script ira criar contas fakes baseadas no link de convite fornecido e que iram ficar perto do usuário. Este script cria o tão famoso "Mar de BBs". Para usar configure as duas variaveis abaixo com o URL do link de convite e o mundo que deve ser colocada a conta
+
+```javascript
+var url = "seu link de convite"
+var mundo = "numero do mundo que deve criar a acc ex: 87";
+```
+
+**ATENÇÃO**
+O jogo limita a criação de 5 contas por dia por link de convite
