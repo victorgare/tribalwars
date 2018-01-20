@@ -68,7 +68,7 @@ var inputVenderFerro;
     var algoPraVender = false;
 
     if (qtdVenderFerro > 0 && qtdVenderFerro <= qtdDisponivelTransporte) {
-        inputVenderFerro.val(qtdVenderFerro)
+        inputVenderFerro.val(qtdVenderFerro);
         algoPraVender = true;
     } else if (qtdVenderArgila > 0 && qtdVenderArgila <= qtdDisponivelTransporte) {
         inputVenderArgila.val(qtdVenderArgila);
@@ -109,8 +109,8 @@ function calcularQuantidadeVender(capacidade, estoque, qtdDisponivel, custo) {
 }
 
 function calcularCusto(tipoRecurso) {
-    var capacidade = PremiumExchange.data.capacity[tipoRecurso]
-    var stock = PremiumExchange.data.stock[tipoRecurso]
+    var capacidade = PremiumExchange.data.capacity[tipoRecurso];
+    var stock = PremiumExchange.data.stock[tipoRecurso];
 
     var fator = (PremiumExchange.data.tax.buy, PremiumExchange.calculateMarginalPrice(stock, capacidade));
     var resultado = Math.floor(1 / fator);
