@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Vender Recursos
-// @version      0.3
+// @version      0.4
 // @description  Vende recursos por PPs!
 // @author       Victor Garé
 // @include https://*&screen=market&mode=exchange*
