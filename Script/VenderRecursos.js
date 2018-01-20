@@ -54,6 +54,17 @@ var inputVenderFerro;
     var qtdVenderArgila = (calcularQuantidadeVender(capacidadeArgila, estoqueArgila, qtdArgilaAldeia, custoArgila) * custoArgila);
     var qtdVenderFerro = (calcularQuantidadeVender(capacidadeFerro, estoqueFerro, qtdFerroAldeia, custoFerro) * custoFerro);
 
+
+    if (qtdVenderMadeira > qtdDisponivelTransporte) {
+        qtdVenderMadeira = qtdDisponivelTransporte - 1000;
+    }
+    if (qtdVenderArgila > qtdDisponivelTransporte) {
+        qtdVenderMadeira = qtdDisponivelTransporte - 1000;
+    }
+    if (qtdVenderFerro > qtdDisponivelTransporte) {
+        qtdVenderMadeira = qtdDisponivelTransporte - 1000;
+    }
+
     var algoPraVender = false;
 
     if (qtdVenderFerro > 0 && qtdVenderFerro <= qtdDisponivelTransporte) {

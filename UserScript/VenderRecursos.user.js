@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Vende Recursos
-// @version      0.2
+// @name         Vender Recursos
+// @version      0.3
 // @description  Vende recursos por PPs!
 // @author       Victor Garé
 // @include https://*&screen=market&mode=exchange*
@@ -66,6 +66,17 @@ var inputVenderFerro;
     var qtdVenderMadeira = (calcularQuantidadeVender(capacidadeMadeira, estoqueMandeira, qtdMadeiraAldeia, custoMadeira) * custoMadeira);
     var qtdVenderArgila = (calcularQuantidadeVender(capacidadeArgila, estoqueArgila, qtdArgilaAldeia, custoArgila) * custoArgila);
     var qtdVenderFerro = (calcularQuantidadeVender(capacidadeFerro, estoqueFerro, qtdFerroAldeia, custoFerro) * custoFerro);
+
+
+    if (qtdVenderMadeira > qtdDisponivelTransporte) {
+        qtdVenderMadeira = qtdDisponivelTransporte - 1000;
+    }
+    if (qtdVenderArgila > qtdDisponivelTransporte) {
+        qtdVenderMadeira = qtdDisponivelTransporte - 1000;
+    }
+    if (qtdVenderFerro > qtdDisponivelTransporte) {
+        qtdVenderMadeira = qtdDisponivelTransporte - 1000;
+    }
 
     var algoPraVender = false;
 
