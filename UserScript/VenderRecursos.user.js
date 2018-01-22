@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Vender Recursos
-// @version      0.4
+// @version      0.5
 // @description  Vende recursos por PPs!
 // @author       Victor Garé
 // @include https://*&screen=market&mode=exchange*
@@ -94,7 +94,7 @@ var inputVenderFerro;
     }
 
     if (algoPraVender) {
-        setInterval(calcularMelhorOferta, 2000);
+        setTimeout(calcularMelhorOferta, 2000);
     }
     setInterval(altAldeia, altAldTempo);
 })();
@@ -102,7 +102,7 @@ var inputVenderFerro;
 function calcularMelhorOferta() {
     $(".btn-premium-exchange-buy").click();
 
-    setInterval(confirmarVenda, 1000);
+    setTimeout(confirmarVenda, 1000);
 }
 
 function confirmarVenda() {

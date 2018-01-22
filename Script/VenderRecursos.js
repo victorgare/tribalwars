@@ -81,7 +81,7 @@ var inputVenderFerro;
     }
 
     if (algoPraVender) {
-        setInterval(calcularMelhorOferta, 2000);
+        setTimeout(calcularMelhorOferta, 2000);
     }
     setInterval(altAldeia, altAldTempo);
 })();
@@ -89,7 +89,7 @@ var inputVenderFerro;
 function calcularMelhorOferta() {
     $(".btn-premium-exchange-buy").click();
 
-    setInterval(confirmarVenda, 1000);
+    setTimeout(confirmarVenda, 1000);
 }
 
 function confirmarVenda() {
