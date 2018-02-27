@@ -38,7 +38,7 @@ function aleatorio(superior, inferior) {
 for (i = 0; i < 100; i++) {
     $(menu).eq(i).each(function () {
         if (!($(this).parent().parent().find('img.tooltip').length)) {
-            var tempoAgora = (tempo * ++x) - aleatorio(150, 300);
+            var tempoAgora = (tempo * ++x) - aleatorio(300, 900);
             setTimeout(function (minhaVar) {
                 $(minhaVar).click();
             }, tempoAgora, this);
