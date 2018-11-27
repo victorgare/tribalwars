@@ -15,6 +15,7 @@ Repositórios de scripts usados para TribalWars
 * [Coletar Coordenadas pelo Click](https://github.com/victorgare/tribalwars#coletar-coordenadas-pelo-click)
 * [ContinuousRecruting](https://github.com/victorgare/tribalwars#continuous-recruting)
 * [AccountCreator](https://github.com/victorgare/tribalwars#account-creator)
+* [ResourcesSender](https://github.com/victorgare/tribalwars#resources-sender)
 
 
 ### Pre-requisitos
@@ -185,3 +186,14 @@ var mundo = "numero do mundo que deve criar a acc ex: 87";
 
 **ATENÇÃO**
 O jogo limita a criação de 5 contas por dia por link de convite
+
+## Resources Sender
+
+* Deve ser executado no mercado na parte de enviar recursos!
+* [Instalar Account Creator](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ResourcesSender.user.js)
+
+Script ira enviar recursos para cunhar moedas para uma aldeia especificada!
+
+```javascript
+const _destino = ""; // aldeia de destino
+```
