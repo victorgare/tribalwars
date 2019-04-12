@@ -208,6 +208,7 @@ Script puxar recursos para a aldeia que estiver sendo executada!
 
 ```javascript
 const _intervalInMinutes = 10; // intervalo de execução
+const _modelToUse = "Proporção"; // Altere para o modelo desejado
 ```
 
 Caso queira alterar o intervalo de executação, apenas alterar o valor da variavel, lembrando que deve ser em minutos
