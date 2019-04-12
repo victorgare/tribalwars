@@ -205,3 +205,9 @@ const _destino = ""; // aldeia de destino
 * [Instalar Resources Request](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ResourcesRequest.user.js)
 
 Script puxar recursos para a aldeia que estiver sendo executada!
+
+```javascript
+const _intervalInMinutes = 10; // intervalo de execução
+```
+
+Caso queira alterar o intervalo de executação, apenas alterar o valor da variavel, lembrando que deve ser em minutos
