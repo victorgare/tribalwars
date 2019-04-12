@@ -3,8 +3,8 @@
 // @version      0.1
 // @description  Send resources to a specified village!
 // @author       Victor Garé
-// @include https://*&screen=market&mode=send*
-// @include https://*&try=confirm_send*
+// @include https://*screen=market&mode=send*
+// @include https://*try=confirm_send*
 // @require https://code.jquery.com/jquery-3.3.1.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ResourcesSender.user.js
 // @updateURL   https://github.com/victorgare/tribalwars/raw/master/UserScript/ResourcesSender.user.js
@@ -16,7 +16,7 @@
 (function () {
     const ResourcesSender = new function () {
         const _destino = ""; // aldeia de destino
-        const _minTime  = 8000; // 8 segundos em milisegundos
+        const _minTime = 8000; // 8 segundos em milisegundos
         const _maxTime = 15000; // 15 segundos em milisegundos
         const _woodPercentage = 0.34; // porcentagem de madeira para enviar
         const _stonePercentage = 0.36; // porcentagem de argila pra enviar
@@ -25,7 +25,7 @@
         const randonNumber = function (min, max) {
             return Math.random() * (max - min) + min;
         }
-        
+
 
         const getMerchantsAvailable = function () {
             return parseInt(document.getElementById("market_merchant_available_count").innerHTML);
@@ -70,7 +70,7 @@
             submitButton();
         }
 
-        const nextVillage = function(){
+        const nextVillage = function () {
             document.getElementById("village_switch_right").click();
         }
 
@@ -101,7 +101,7 @@
                 // se os tres metodos acima retornarem verdadeiro, deve-se tentar dar o submit
                 // metodo que devera enviar os recursos
                 sendResources();
-            }else{
+            } else {
                 nextVillage();
             }
         }

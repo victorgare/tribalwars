@@ -16,6 +16,7 @@ Repositórios de scripts usados para TribalWars
 * [ContinuousRecruting](https://github.com/victorgare/tribalwars#continuous-recruting)
 * [AccountCreator](https://github.com/victorgare/tribalwars#account-creator)
 * [Resources Sender](https://github.com/victorgare/tribalwars#resources-sender)
+* [Resources Request](https://github.com/victorgare/tribalwars#resources-request)
 
 
 ### Pre-requisitos
@@ -197,3 +198,10 @@ Script ira enviar recursos para cunhar moedas para uma aldeia especificada!
 ```javascript
 const _destino = ""; // aldeia de destino
 ```
+
+## Resources Request
+
+* Deve ser executado no mercado na parte de pedir recursos!
+* [Instalar Resources Request](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ResourcesRequest.user.js)
+
+Script puxar recursos para a aldeia que estiver sendo executada!
