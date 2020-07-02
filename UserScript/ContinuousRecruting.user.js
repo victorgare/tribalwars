@@ -4,8 +4,8 @@
 // @description  Irá recrutar uma unidade das configuradas caso não haja nenhuma na fila
 // @author       Victor Garé
 // @include https://*&screen=train*
-// @include https://*&screen=barracks*
 // @include https://*&screen=stable*
+// @include https://*&screen=barracks*
 // @require https://code.jquery.com/jquery-2.2.4.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ContinuousRecruting.user.js
 // @updateURL   https://github.com/victorgare/tribalwars/raw/master/UserScript/ContinuousRecruting.user.js
@@ -107,7 +107,7 @@ $(document).ready(function () {
 
 function validarPreencher(singleObject) {
     if (singleObject.recrutar) {
-        if ($(singleObject.cssClassSelector).length <= 0) {
+        if ($(singleObject.cssClassSelector).length <= 0 && $("input[name=" + singleObject.nomeUnidade + "]").length > 0) {
             $("input[name=" + singleObject.nomeUnidade + "]").val("1");
             return true;
         }
