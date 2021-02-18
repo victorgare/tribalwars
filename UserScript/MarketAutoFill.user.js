@@ -12,8 +12,10 @@
 function setResourceValue(inputElement, value=1000) {
     if(!inputElement) {
         return
-    }
+	}
+	
     inputElement.value = value
 }
+
 setResourceValue(document.querySelector('#res_sell_amount'))
 setResourceValue(document.querySelector('#res_buy_amount'))
