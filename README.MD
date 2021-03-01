@@ -1,6 +1,13 @@
+
 # Tribal Wars Scripts
 
 Repositórios de scripts usados para TribalWars
+
+## Contributors
+[@victorgare](https://github.com/victorgare)
+[@joaovperin](https://github.com/joaovperin)
+[@IagoReis](https://github.com/IagoReis)
+[@Dude29](https://github.com/Dude29)
 
 ## Sumario
 
