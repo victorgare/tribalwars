@@ -39,6 +39,7 @@ if (altAldTempo == "1") {
     var altAldTempo = parseInt(altAldTempo) + parseInt(aleatorio(46353, 24356));
 }
 console.log("Resta " + altAldTempo + " milesegundos para alternar a aldeia.");
+
 function aleatorio(superior, inferior) {
     numPosibilidades = superior - inferior;
     aleat = Math.random() * numPosibilidades;
@@ -49,12 +50,37 @@ for (i = 0; i < 100; i++) {
         if (!($(this).parent().parent().find('img.tooltip').length)) {
             var tempoAgora = (tempo * ++x) - aleatorio(300, 900);
             setTimeout(function (minhaVar) {
-                $(minhaVar).click();
+                if (isRecaptchaWindowPresent()) {
+                    TribalWars.playAttackSound();
+                    TribalWars.playAttackSound();
+                    TribalWars.playAttackSound();
+                    alert('SCRIPT PARADO POR CONTA DE RECAPTCHA :P');
+                } else {
+                    $(minhaVar).click();
+                }
             }, tempoAgora, this);
 
         }
     });
 }
+
+function isRecaptchaWindowPresent() {
+    var isPresent = false;
+    if (document.querySelector('#rc-anchor-alert')) {
+        isPresent = true;
+    }
+    if (document.querySelector("#rc-anchor-container")) {
+        isPresent = true;
+    }
+    if (document.querySelector("#recaptcha-token")) {
+        isPresent = true;
+    }
+    if (isPresent) {
+        console.log("SE FERROU, RECAPTCHA TÁ NA AREA AUHEAUHEAUHAE");
+    }
+    return isPresent;
+}
+
 function altAldeia() {
     //$("#village_switch_right").click();
     document.getElementById('village_switch_right').click();
