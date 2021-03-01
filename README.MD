@@ -212,3 +212,14 @@ const _modelToUse = "Proporção"; // Altere para o modelo desejado
 ```
 
 Caso queira alterar o intervalo de executação, apenas alterar o valor da variavel, lembrando que deve ser em minutos
+
+## Market Autofill
+
+* Deve ser executado no mercado na parte de criar ofertas
+* [Instalar Market Autofill](https://raw.githubusercontent.com/dude29/tribalwars/master/UserScript/MarketAutofill.user.js)
+
+Automaticamente preenche as caixas de oferta no mercado com o valor predefinido
+
+```javascript
+value = 1000 // valor que o script usará para encher as caixas
+```
