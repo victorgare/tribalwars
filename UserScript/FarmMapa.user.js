@@ -67,7 +67,7 @@ $(document).ready(function () {
         (function (villageA) {
             var tempoAgora = (tempo * ++x) - aleatorio(150, 300);
             setTimeout(function () {
-                if (villageA.owner == "0" || (villagesToSkip.length > 0 && villagesToSkip.includes(villageA.id))) {
+                if (villageA.owner == "0" && !(villagesToSkip.length > 0 && villagesToSkip.includes(villageA.id))) {
                     //var coordAtual = TWMap.CoordByXY(key[k]);
                     console.log(villageA);
                     var coordAtual = TWMap.CoordByXY(villageA);
