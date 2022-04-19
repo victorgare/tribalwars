@@ -23,6 +23,7 @@ $(document).ready(function () {
     var x = 0;
     var altAldTempo = aleatorio(180000, 300000);
     //var altAldTempo = aleatorio(30000,60000);
+    var villagesToSkip = []; // add the villages id as string to the array
 
 
 
@@ -66,7 +67,7 @@ $(document).ready(function () {
         (function (villageA) {
             var tempoAgora = (tempo * ++x) - aleatorio(150, 300);
             setTimeout(function () {
-                if (villageA.owner == "0") {
+                if (villageA.owner == "0" && !(villagesToSkip.length > 0 && villagesToSkip.includes(villageA.id))) {
                     //var coordAtual = TWMap.CoordByXY(key[k]);
                     console.log(villageA);
                     var coordAtual = TWMap.CoordByXY(villageA);
