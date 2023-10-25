@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Continuos Recruting
-// @version      0.2
+// @version      0.3
 // @description  Irá recrutar uma unidade das configuradas caso não haja nenhuma na fila
 // @author       Victor Garé
-// @include https://*&screen=train*
-// @include https://*&screen=stable*
-// @include https://*&screen=barracks*
+// @match https://*.tribalwars.com.br/*&screen=train
+// @match https://*.tribalwars.com.br/*&screen=stable
+// @match https://*.tribalwars.com.br/*&screen=barracks
 // @require https://code.jquery.com/jquery-2.2.4.min.js
 // @downloadURL https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/ContinuousRecruting.user.js
 // @updateURL   https://github.com/victorgare/tribalwars/raw/master/UserScript/ContinuousRecruting.user.js
