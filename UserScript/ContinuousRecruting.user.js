@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Continuos Recruting
-// @version      0.3
+// @version      0.4
 // @description  Irá recrutar uma unidade das configuradas caso não haja nenhuma na fila
 // @author       Victor Garé
 // @match https://*.tribalwars.com.br/*&screen=train*
