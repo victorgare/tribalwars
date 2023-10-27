@@ -11,99 +11,103 @@ var catapulta = false;
 var ariete = false;
 
 var classEnum = Object.freeze({
-    lanca: ".unit_sprite_smaller.spear",
-    espada: ".unit_sprite_smaller.sword",
-    barbaro: ".unit_sprite_smaller.axe",
-    explorador: ".unit_sprite_smaller.spy",
-    cavalariaLeve: ".unit_sprite_smaller.light",
-    cavalariaPesada: ".unit_sprite_smaller.heavy",
-    ariete: ".unit_sprite_smaller.ram",
-    catapulta: ".unit_sprite_smaller.catapult"
+  lanca: ".unit_sprite_smaller.spear",
+  espada: ".unit_sprite_smaller.sword",
+  barbaro: ".unit_sprite_smaller.axe",
+  explorador: ".unit_sprite_smaller.spy",
+  cavalariaLeve: ".unit_sprite_smaller.light",
+  cavalariaPesada: ".unit_sprite_smaller.heavy",
+  ariete: ".unit_sprite_smaller.ram",
+  catapulta: ".unit_sprite_smaller.catapult",
 });
 
 function GerarObjeto() {
-    objetoTropas = [
-        {
-            nomeUnidade: "spear",
-            recrutar: lanca,
-            cssClassSelector: classEnum.lanca
-        },
-        {
-            nomeUnidade: "sword",
-            recrutar: espada,
-            cssClassSelector: classEnum.espada
-        },
-        {
-            nomeUnidade: "axe",
-            recrutar: barbaro,
-            cssClassSelector: classEnum.barbaro
-        },
-        {
-            nomeUnidade: "spy",
-            recrutar: explorador,
-            cssClassSelector: classEnum.explorador
-        },
-        {
-            nomeUnidade: "light",
-            recrutar: cavalariaLeve,
-            cssClassSelector: classEnum.cavalariaLeve
-        },
-        {
-            nomeUnidade: "heavy",
-            recrutar: cavalariaPesada,
-            cssClassSelector: classEnum.cavalariaPesada
-        },
-        {
-            nomeUnidade: "ram",
-            recrutar: ariete,
-            cssClassSelector: classEnum.ariete
-        },
-        {
-            nomeUnidade: "catapult",
-            recrutar: catapulta,
-            cssClassSelector: classEnum.catapulta
-        }
-    ];
+  objetoTropas = [
+    {
+      nomeUnidade: "spear",
+      recrutar: lanca,
+      cssClassSelector: classEnum.lanca,
+    },
+    {
+      nomeUnidade: "sword",
+      recrutar: espada,
+      cssClassSelector: classEnum.espada,
+    },
+    {
+      nomeUnidade: "axe",
+      recrutar: barbaro,
+      cssClassSelector: classEnum.barbaro,
+    },
+    {
+      nomeUnidade: "spy",
+      recrutar: explorador,
+      cssClassSelector: classEnum.explorador,
+    },
+    {
+      nomeUnidade: "light",
+      recrutar: cavalariaLeve,
+      cssClassSelector: classEnum.cavalariaLeve,
+    },
+    {
+      nomeUnidade: "heavy",
+      recrutar: cavalariaPesada,
+      cssClassSelector: classEnum.cavalariaPesada,
+    },
+    {
+      nomeUnidade: "ram",
+      recrutar: ariete,
+      cssClassSelector: classEnum.ariete,
+    },
+    {
+      nomeUnidade: "catapult",
+      recrutar: catapulta,
+      cssClassSelector: classEnum.catapulta,
+    },
+  ];
 }
 
 $(document).ready(function () {
-    GerarObjeto();
+  GerarObjeto();
 
-    var retorno = false;
-    objetoTropas.forEach(element => {
-        var response = validarPreencher(element);
+  var retorno = false;
+  objetoTropas.forEach((element) => {
+    var response = validarPreencher(element);
 
-        //se o retorno não tiver sido verdadeiro nos loops anteriores, seta com o valor da resposta atual
-        //caso ja tenha sido, manter o valor como verdadeiro
-        if (!retorno) {
-            retorno = response;
-        }
-    });
-
-    if (retorno) {
-        $(".btn-recruit").click();
+    //se o retorno não tiver sido verdadeiro nos loops anteriores, seta com o valor da resposta atual
+    //caso ja tenha sido, manter o valor como verdadeiro
+    if (!retorno) {
+      retorno = response;
     }
+  });
 
-    console.log(altAldTempo);
-    setInterval(function () {
-        console.log("recarrega");
-        location.reload(true);
-    }, altAldTempo);
+  if (retorno) {
+    $(".btn-recruit").click();
+  }
+
+  console.log(altAldTempo);
+  setInterval(function () {
+    console.log("recarrega");
+    location.reload(true);
+  }, altAldTempo);
 });
 
 function validarPreencher(singleObject) {
-    if (singleObject.recrutar) {
-        if ($(singleObject.cssClassSelector).length <= 0) {
-            $("input[name=" + singleObject.nomeUnidade + "]").val("1");
-            return true;
-        }
+  if (singleObject.recrutar) {
+    if ($(singleObject.cssClassSelector).length <= 0) {
+      const inputs = $("input[name=" + singleObject.nomeUnidade + "]");
+      // just set value if the input the parent isn't hidden
+      if (!inputs.parent().is(":hidden")) {
+        inputs.val("1");
+      }
+
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
-
 function aleatorio(superior, inferior) {
-    numPosibilidades = superior - inferior;
-    aleat = Math.random() * numPosibilidades;
-    return Math.round(parseInt(inferior) + aleat);
+  numPosibilidades = superior - inferior;
+  aleat = Math.random() * numPosibilidades;
+  return Math.round(parseInt(inferior) + aleat);
 }
