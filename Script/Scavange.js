@@ -57,7 +57,7 @@
 
       const result = [];
       for (const troop of troops) {
-        const troopsToSend = Math.round(
+        const troopsToSend = Math.floor(
           (troop.quantity * scavangeWeight) / totalWeight
         );
 
@@ -99,7 +99,10 @@
               const element = availableScavanges[index];
 
               const delayTime = 3000 + 3000 * index;
-              setTimeout(sendScavange(weight, troops, element), delayTime);
+              setTimeout(
+                () => sendScavange(weight, troops, element),
+                delayTime
+              );
             }
           }
         }
@@ -112,7 +115,6 @@
   // reload between 5 and 10 minutes
   const reloadTime = randonTime(300000, 600000);
   console.log(`will reload in ${reloadTime / 1000} seconds`);
-  // const reloadTime = randonTime(1000, 5000);
   setInterval(function () {
     console.log("reloading...");
     location.reload(true);
