@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Scavange
-// @version      0.2
+// @version      0.3
 // @description  Auto scavange
 // @author       Victor Garé
 // @match https://*.tribalwars.com.br/*&screen=place&mode=scavenge*
@@ -31,10 +31,14 @@
     };
 
     const getScavangeWeight = () => {
-      const blockedScavanges = getBlockedScavanges() * -1;
+      const blockedScavanges = getBlockedScavanges();
 
-      return scavangesWeight
-        .slice(0, blockedScavanges)
+      let weightArray = scavangesWeight;
+      if(blockedScavanges > 0){
+        weightArray = weightArray.slice(0, blockedScavanges * -1)
+      }
+
+      return weightArray
         .reduce((item1, item2) => {
           return item1 + item2;
         });
