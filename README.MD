@@ -240,6 +240,6 @@ Script que divide as tropas e envia para coleta
 ## Smart Farm
 
 - Deve ser executado na página do assistente de saque
-- [Instalar Auto Scavange](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/SmartFarm.user.js)
+- [Instalar Smart Farm](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/SmartFarm.user.js)
 
 Script envia farm de maneira mais eficiente, enviando o template `A` para aldeia que não obtiveram saque cheio e template `B` para aldeias que retornaram com saque cheio.
