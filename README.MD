@@ -28,6 +28,7 @@ Repositórios de scripts usados para TribalWars
 - [Resources Sender](https://github.com/victorgare/tribalwars#resources-sender)
 - [Resources Request](https://github.com/victorgare/tribalwars#resources-request)
 - [Auto Scavange](https://github.com/victorgare/tribalwars#auto-scavange)
+- [Smart farm](https://github.com/victorgare/tribalwars#smart-farm)
 
 ### Pre-requisitos
 
@@ -235,3 +236,10 @@ value = 1000; // valor que o script usará para encher as caixas
 - [Instalar Auto Scavange](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/Scavange.user.js)
 
 Script que divide as tropas e envia para coleta
+
+## Smart Farm
+
+- Deve ser executado na página do assistente de saque
+- [Instalar Auto Scavange](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/SmartFarm.user.js)
+
+Script envia farm de maneira mais eficiente, enviando o template `A` para aldeia que não obtiveram saque cheio e template `B` para aldeias que retornaram com saque cheio.
