@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Scavange
-// @version      0.4
+// @version      0.5
 // @description  Auto scavange
 // @author       Victor Garé
 // @match https://*.tribalwars.com.br/*&screen=place&mode=scavenge*
@@ -98,29 +98,28 @@
     };
 
     this.init = () => {
-      $(document).ready(() => {
-        const troops = getAvailableTroops();
-        const availableScavanges = getAvailableScavanges();
+      const troops = getAvailableTroops();
+      const availableScavanges = getAvailableScavanges();
 
-        const scavangesUnlocked =
-          scavangesWeight.length - getBlockedScavanges();
+      const scavangesUnlocked = scavangesWeight.length - getBlockedScavanges();
 
-        // only run scavange if all unlocked are available
-        // to prevent from sending wrong number of troops
-        if (availableScavanges.length >= scavangesUnlocked) {
-          for (let index = 0; index < availableScavanges.length; index++) {
-            const weight = scavangesWeight[index];
-            const element = availableScavanges[index];
+      // only run scavange if all unlocked are available
+      // to prevent from sending wrong number of troops
+      if (availableScavanges.length >= scavangesUnlocked) {
+        for (let index = 0; index < availableScavanges.length; index++) {
+          const weight = scavangesWeight[index];
+          const element = availableScavanges[index];
 
-            const delayTime = 3000 + 3000 * index;
-            setTimeout(() => sendScavange(weight, troops, element), delayTime);
-          }
+          const delayTime = 3000 + 3000 * index;
+          setTimeout(() => sendScavange(weight, troops, element), delayTime);
         }
-      });
+      }
     };
   })();
 
-  Scavange.init();
+  $(document).ready(() => {
+    Scavange.init();
+  });
 
   // reload between 5 and 10 minutes
   const reloadTime = randonTime(300000, 600000);

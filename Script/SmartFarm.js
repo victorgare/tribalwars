@@ -76,44 +76,44 @@
       }, reloadTime);
     };
 
-    this.init = () => {
-      $(document).ready(async () => {
-        let exit = false;
-        const [templateA, templateB] = Object.values(getTemplates());
+    this.init = async () => {
+      let exit = false;
+      const [templateA, templateB] = Object.values(getTemplates());
 
-        do {
-          const element = getNextVillage();
+      do {
+        const element = getNextVillage();
 
-          if (!element) {
-            exit = true;
-            console.log("no more villages to attack");
-            break;
-          }
+        if (!element) {
+          exit = true;
+          console.log("no more villages to attack");
+          break;
+        }
 
-          if (hasLootedAll(element)) {
-            if (hasEnoughUnitsInTemplate(templateB)) {
-              clickTemplateB(element);
-            } else {
-              exit = !validateAndSendTemplateA(templateA, element);
-            }
+        if (hasLootedAll(element)) {
+          if (hasEnoughUnitsInTemplate(templateB)) {
+            clickTemplateB(element);
           } else {
             exit = !validateAndSendTemplateA(templateA, element);
           }
+        } else {
+          exit = !validateAndSendTemplateA(templateA, element);
+        }
 
-          // await at leat 250 ms until next atak
-          // this prevent request flood
-          const waitTime = randonTime(250, 350);
-          await delay(waitTime);
+        // await at leat 250 ms until next atak
+        // this prevent request flood
+        const waitTime = randonTime(250, 350);
+        await delay(waitTime);
 
-          if (exit) {
-            console.log("exiting...");
-          }
-        } while (!exit);
+        if (exit) {
+          console.log("exiting...");
+        }
+      } while (!exit);
 
-        reloadPage();
-      });
+      reloadPage();
     };
   })();
 
-  SmartFarm.init();
+  $(document).ready(() => {
+    SmartFarm.init();
+  });
 })();
