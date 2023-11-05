@@ -106,7 +106,10 @@
   })();
 
   $(document).ready(() => {
-    Scavange.init();
+    // wait 1 sec after page load to start script
+    setTimeout(() => {
+      Scavange.init();
+    }, 1000);
   });
 
   // reload between 5 and 10 minutes

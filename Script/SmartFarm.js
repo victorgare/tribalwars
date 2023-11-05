@@ -114,6 +114,9 @@
   })();
 
   $(document).ready(() => {
-    SmartFarm.init();
+    // wait 1 sec after page load to start script
+    setTimeout(() => {
+      SmartFarm.init();
+    }, 1000);
   });
 })();

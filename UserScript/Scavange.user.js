@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Scavange
-// @version      0.5
+// @version      0.6
 // @description  Auto scavange
 // @author       Victor Garé
 // @match https://*.tribalwars.com.br/*&screen=place&mode=scavenge*
@@ -9,7 +9,6 @@
 // @updateURL   https://github.com/victorgare/tribalwars/raw/master/UserScript/Scavange.user.js
 // @run-at document-end
 // ==/UserScript==
-
 (function () {
   "use strict";
 
@@ -118,7 +117,10 @@
   })();
 
   $(document).ready(() => {
-    Scavange.init();
+    // wait 1 sec after page load to start script
+    setTimeout(() => {
+      Scavange.init();
+    }, 1000);
   });
 
   // reload between 5 and 10 minutes

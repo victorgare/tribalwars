@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Smart Farm
-// @version      0.3
+// @version      0.4
 // @description  Smart farm script for better farming
 // @author       Victor Garé
 // @match        https://*.tribalwars.com.br/*&screen=am_farm*
@@ -9,7 +9,6 @@
 // @updateURL   https://github.com/victorgare/tribalwars/raw/master/UserScript/SmartFarm.user.js
 // @run-at document-end
 // ==/UserScript==
-
 (function () {
   "use strict";
 
@@ -126,6 +125,9 @@
   })();
 
   $(document).ready(() => {
-    SmartFarm.init();
+    // wait 1 sec after page load to start script
+    setTimeout(() => {
+      SmartFarm.init();
+    }, 1000);
   });
 })();
