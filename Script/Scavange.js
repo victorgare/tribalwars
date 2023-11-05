@@ -22,14 +22,13 @@
       const blockedScavanges = getBlockedScavanges();
 
       let weightArray = scavangesWeight;
-      if(blockedScavanges > 0){
-        weightArray = weightArray.slice(0, blockedScavanges * -1)
+      if (blockedScavanges > 0) {
+        weightArray = weightArray.slice(0, blockedScavanges * -1);
       }
 
-      return weightArray
-        .reduce((item1, item2) => {
-          return item1 + item2;
-        });
+      return weightArray.reduce((item1, item2) => {
+        return item1 + item2;
+      });
     };
 
     const getAvailableTroops = () => {
@@ -87,30 +86,25 @@
     };
 
     this.init = () => {
-      document.onreadystatechange = () => {
-        if (document.readyState === "complete") {
-          const troops = getAvailableTroops();
-          const availableScavanges = getAvailableScavanges();
+      $(document).ready(() => {
+        const troops = getAvailableTroops();
+        const availableScavanges = getAvailableScavanges();
 
-          const scavangesUnlocked =
-            scavangesWeight.length - getBlockedScavanges();
+        const scavangesUnlocked =
+          scavangesWeight.length - getBlockedScavanges();
 
-          // only run scavange if all unlocked are available
-          // to prevent from sending wrong number of troops
-          if (availableScavanges.length >= scavangesUnlocked) {
-            for (let index = 0; index < availableScavanges.length; index++) {
-              const weight = scavangesWeight[index];
-              const element = availableScavanges[index];
+        // only run scavange if all unlocked are available
+        // to prevent from sending wrong number of troops
+        if (availableScavanges.length >= scavangesUnlocked) {
+          for (let index = 0; index < availableScavanges.length; index++) {
+            const weight = scavangesWeight[index];
+            const element = availableScavanges[index];
 
-              const delayTime = 3000 + 3000 * index;
-              setTimeout(
-                () => sendScavange(weight, troops, element),
-                delayTime
-              );
-            }
+            const delayTime = 3000 + 3000 * index;
+            setTimeout(() => sendScavange(weight, troops, element), delayTime);
           }
         }
-      };
+      });
     };
   })();
 

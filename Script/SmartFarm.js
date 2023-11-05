@@ -67,59 +67,51 @@
     };
 
     const reloadPage = () => {
-      // reload between 5 and 10 minutes
+      // reload between 1 and 2 minutes
       const reloadTime = randonTime(60000, 120000);
       console.log(`will reload in ${reloadTime / 1000} seconds`);
       setInterval(function () {
         console.log("reloading...");
-        location.reload(true);
+        window.location.reload(true);
       }, reloadTime);
     };
 
     this.init = () => {
-      document.onreadystatechange = async () => {
-        if (document.readyState === "complete") {
-          let exit = false;
-          const [templateA, templateB] = Object.values(getTemplates());
+      $(document).ready(async () => {
+        let exit = false;
+        const [templateA, templateB] = Object.values(getTemplates());
 
-          let index = 0;
-          do {
-            const element = getNextVillage();
+        do {
+          const element = getNextVillage();
 
-            if (!element) {
-              exit = true;
-              console.log("no more villages to attack");
-              break;
-            }
+          if (!element) {
+            exit = true;
+            console.log("no more villages to attack");
+            break;
+          }
 
-            if (hasLootedAll(element)) {
-              if (hasEnoughUnitsInTemplate(templateB)) {
-                clickTemplateB(element);
-              } else {
-                exit = !validateAndSendTemplateA(templateA, element);
-              }
+          if (hasLootedAll(element)) {
+            if (hasEnoughUnitsInTemplate(templateB)) {
+              clickTemplateB(element);
             } else {
               exit = !validateAndSendTemplateA(templateA, element);
             }
+          } else {
+            exit = !validateAndSendTemplateA(templateA, element);
+          }
 
-            index++;
-            // await at leat 250 ms until next atak
-            // this prevent request flood
-            const waitTime = randonTime(250, 350);
-            await delay(waitTime);
+          // await at leat 250 ms until next atak
+          // this prevent request flood
+          const waitTime = randonTime(250, 350);
+          await delay(waitTime);
 
-            // if (index >= 10) {
-            //   exit = true;
-            // }
+          if (exit) {
+            console.log("exiting...");
+          }
+        } while (!exit);
 
-            if (exit) {
-              console.log("exiting...");
-            }
-          } while (!exit);
-
-          reloadPage();
-        }
-      };
+        reloadPage();
+      });
     };
   })();
 
