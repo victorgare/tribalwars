@@ -1,7 +1,7 @@
-(function () {
-  "use strict";
 
-  const SmartFarm = new (function () {
+(function () {
+  'use strict';
+  const SmartFarm = new function () {
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
     const randonTime = (superior, inferior) => {
@@ -20,7 +20,6 @@
 
     const getAvailableLightCavalry = () => {
       return Accountmanager.farm.current_units.light;
-      //   return parseInt(document.getElementById("light").innerHTML);
     };
 
     const getNextVillage = () => {
@@ -67,56 +66,60 @@
     };
 
     const reloadPage = () => {
-      // reload between 1 and 2 minutes
-      const reloadTime = randonTime(60000, 120000);
+      // reload between 4 and 7 minutes
+      const reloadTime = randonTime(240000, 420000);
       console.log(`will reload in ${reloadTime / 1000} seconds`);
       setInterval(function () {
         console.log("reloading...");
-        window.location.reload(true);
+        window.location.reload();
       }, reloadTime);
     };
 
     this.init = async () => {
+      console.log("starting farm")
+
+      // start the page reload
+      reloadPage()
+
       let exit = false;
+      const MAX_ATTACKS = 1000;
       const [templateA, templateB] = Object.values(getTemplates());
 
-      do {
+      for (let index = 0; index < MAX_ATTACKS; index++) {
+        console.log(`sending attak ${index}`)
         const element = getNextVillage();
 
         if (!element) {
           exit = true;
           console.log("no more villages to attack");
-          break;
-        }
-
-        if (hasLootedAll(element)) {
-          if (hasEnoughUnitsInTemplate(templateB)) {
-            clickTemplateB(element);
+        } else {
+          if (hasLootedAll(element)) {
+            if (hasEnoughUnitsInTemplate(templateB)) {
+              clickTemplateB(element);
+            } else {
+              exit = !validateAndSendTemplateA(templateA, element);
+            }
           } else {
             exit = !validateAndSendTemplateA(templateA, element);
           }
-        } else {
-          exit = !validateAndSendTemplateA(templateA, element);
-        }
 
-        // await at leat 250 ms until next atak
-        // this prevent request flood
-        const waitTime = randonTime(250, 350);
-        await delay(waitTime);
+          // await at leat 250 ms until next atak
+          // this prevent request flood
+          const waitTime = randonTime(250, 350);
+          await delay(waitTime);
+        }
 
         if (exit) {
-          console.log("exiting...");
+          console.log(`exiting after ${index} attacks...`);
+          index = MAX_ATTACKS
         }
-      } while (!exit);
+      }
 
-      reloadPage();
     };
-  })();
+  };
 
-  $(document).ready(() => {
-    // wait 1 sec after page load to start script
-    setTimeout(() => {
-      SmartFarm.init();
-    }, 1000);
+  $(function () {
+    Accountmanager.farm.init();
+    SmartFarm.init();
   });
 })();
