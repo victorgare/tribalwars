@@ -7,7 +7,7 @@
     return Math.round(parseInt(inferior) + aleat);
   }
 
-  const Scavange = new (function () {
+  const Scavange = new function () {
     const scavangesWeight = [15, 6, 3, 2];
 
     const getBlockedScavanges = () => {
@@ -103,7 +103,7 @@
         }
       }
     };
-  })();
+  };
 
   $(document).ready(() => {
     // wait 1 sec after page load to start script
