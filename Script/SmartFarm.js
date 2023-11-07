@@ -75,45 +75,36 @@
       }, reloadTime);
     };
 
+    const sendAttack = async () => {
+      const [templateA, templateB] = Object.values(getTemplates());
+      const element = getNextVillage();
+
+      if (element) {
+        if (hasLootedAll(element)) {
+          if (hasEnoughUnitsInTemplate(templateB)) {
+            clickTemplateB(element);
+          } else {
+            validateAndSendTemplateA(templateA, element);
+          }
+        } else {
+          validateAndSendTemplateA(templateA, element);
+        }
+
+        // await at leat 250 ms until next atak
+        // this prevent request flood
+        const waitTime = randonTime(250, 350);
+        await delay(waitTime);
+      }
+    }
     this.init = async () => {
       console.log("starting farm")
 
       // start the page reload
       reloadPage()
 
-      let exit = false;
-      const MAX_ATTACKS = 1000;
-      const [templateA, templateB] = Object.values(getTemplates());
-
-      for (let index = 0; index < MAX_ATTACKS; index++) {
-        console.log(`sending attak ${index}`)
-        const element = getNextVillage();
-
-        if (!element) {
-          exit = true;
-          console.log("no more villages to attack");
-        } else {
-          if (hasLootedAll(element)) {
-            if (hasEnoughUnitsInTemplate(templateB)) {
-              clickTemplateB(element);
-            } else {
-              exit = !validateAndSendTemplateA(templateA, element);
-            }
-          } else {
-            exit = !validateAndSendTemplateA(templateA, element);
-          }
-
-          // await at leat 250 ms until next atak
-          // this prevent request flood
-          const waitTime = randonTime(250, 350);
-          await delay(waitTime);
-        }
-
-        if (exit) {
-          console.log(`exiting after ${index} attacks...`);
-          index = MAX_ATTACKS
-        }
-      }
+      setInterval(async () => {
+        await sendAttack()
+      }, 500)
 
     };
   };
