@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Smart Farm
-// @version      0.6
+// @version      0.7
 // @description  Smart farm script for better farming
 // @author       Victor Garé
 // @match        https://*.tribalwars.com.br/*&screen=am_farm*
@@ -29,10 +29,6 @@
 
     const getCurrentUnits = () => {
       return Accountmanager.farm.current_units;
-    };
-
-    const getAvailableLightCavalry = () => {
-      return Accountmanager.farm.current_units.light;
     };
 
     const getNextVillage = () => {

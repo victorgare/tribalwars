@@ -18,10 +18,6 @@
       return Accountmanager.farm.current_units;
     };
 
-    const getAvailableLightCavalry = () => {
-      return Accountmanager.farm.current_units.light;
-    };
-
     const getNextVillage = () => {
       // query only rows that are visible!
       return document.querySelector(
