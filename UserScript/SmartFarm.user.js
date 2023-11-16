@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Smart Farm
-// @version      0.7
+// @version      0.8
 // @description  Smart farm script for better farming
 // @author       Victor Garé
 // @match        https://*.tribalwars.com.br/*&screen=am_farm*
@@ -10,7 +10,6 @@
 // @run-at document-end
 // @run-at document-idle
 // ==/UserScript==
-
 
 (function () {
   'use strict';

@@ -1,13 +1,11 @@
-
 (function () {
   'use strict';
+
   const SmartFarm = new function () {
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    const randonTime = (superior, inferior) => {
-      const numPosibilidades = superior - inferior;
-      const aleat = Math.random() * numPosibilidades;
-      return Math.round(parseInt(inferior) + aleat);
+    const randomTime = (min, max) => {
+      return Math.round(min + Math.random() * (max - min));
     };
 
     const getTemplates = () => {
@@ -25,20 +23,22 @@
       );
     };
 
-    const hasLootedAll = (element) => {
-      const lastLoot = element.querySelector("img[src*='max_loot']");
-      return lastLoot.getAttribute("src").endsWith("1.png");
+    const hasLootedAll = (villageElement) => {
+      const lastLoot = villageElement.querySelector("img[src*='max_loot']");
+      return lastLoot && lastLoot.getAttribute("src").endsWith("1.png");
     };
 
     const hasEnoughUnitsInTemplate = (template) => {
       const units = getCurrentUnits();
 
       for (const unitName in units) {
-        const unitQuantity = units[unitName];
-        const templateUnityQuantity = template[unitName];
+        if (units.hasOwnProperty(unitName)) {
+          const unitQuantity = units[unitName];
+          const templateUnitQuantity = template[unitName];
 
-        if (templateUnityQuantity && unitQuantity < templateUnityQuantity) {
-          return false;
+          if (templateUnitQuantity && unitQuantity < templateUnitQuantity) {
+            return false;
+          }
         }
       }
 
@@ -62,51 +62,48 @@
     };
 
     const reloadPage = () => {
-      // reload between 4 and 7 minutes
-      const reloadTime = randonTime(240000, 420000);
+      const reloadTime = randomTime(240000, 420000);
       console.log(`will reload in ${reloadTime / 1000} seconds`);
-      setInterval(function () {
+      setTimeout(() => {
         console.log("reloading...");
         window.location.reload();
       }, reloadTime);
     };
 
     const sendAttack = async () => {
-      const [templateA, templateB] = Object.values(getTemplates());
-      const element = getNextVillage();
+      const templates = getTemplates();
+      if (!templates) return;
 
-      if (element) {
-        if (hasLootedAll(element)) {
-          if (hasEnoughUnitsInTemplate(templateB)) {
-            clickTemplateB(element);
-          } else {
-            validateAndSendTemplateA(templateA, element);
-          }
-        } else {
-          validateAndSendTemplateA(templateA, element);
+      const [templateA, templateB] = Object.values(templates);
+      const villageElement = getNextVillage();
+
+      if (villageElement) {
+        if (hasLootedAll(villageElement)) {
         }
-
-        // await at leat 250 ms until next atak
-        // this prevent request flood
-        const waitTime = randonTime(250, 350);
-        await delay(waitTime);
+      } else {
+        validateAndSendTemplateA(templateA, element);
       }
+
+      const waitTime = randomTime(250, 350);
+      await delay(waitTime);
     }
-    this.init = async () => {
-      console.log("starting farm")
+  };
 
-      // start the page reload
-      reloadPage()
+  this.init = async () => {
+    console.log("starting farm");
 
-      setInterval(async () => {
-        await sendAttack()
-      }, 500)
+    // start the page reload
+    reloadPage();
 
-    };
+    await sendAttack();
   };
 
   $(function () {
-    Accountmanager.farm.init();
-    SmartFarm.init();
+    if (typeof Accountmanager !== 'undefined' && Accountmanager.farm) {
+      Accountmanager.farm.init();
+      SmartFarm.init();
+    } else {
+      console.error('Accountmanager or farm not defined');
+    }
   });
 })();
