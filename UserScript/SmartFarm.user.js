@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Smart Farm
-// @version      0.8
+// @version      1.0
 // @description  Smart farm script for better farming
 // @author       Victor Garé
 // @match        https://*.tribalwars.com.br/*&screen=am_farm*
@@ -15,6 +15,11 @@
   'use strict';
 
   const SmartFarm = new function () {
+    const TemplatesEnum = {
+      A: 'a',
+      B: 'b',
+    }
+
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
     const randomTime = (min, max) => {
@@ -58,17 +63,18 @@
       return true;
     };
 
-    const clickTemplateB = (element) => {
-      element.querySelector("a.farm_icon.farm_icon_b").click();
+    const clickTemplate = (templateType, villageElement) => {
+      const selector = `a.farm_icon.farm_icon_${templateType}`;
+      const templateLink = villageElement.querySelector(selector);
+
+      if (templateLink) {
+        templateLink.click();
+      }
     };
 
-    const clickTemplateA = (element) => {
-      element.querySelector("a.farm_icon.farm_icon_a").click();
-    };
-
-    const validateAndSendTemplateA = (template, element) => {
+    const validateAndSendTemplate = (template, villageElement, templateType) => {
       if (hasEnoughUnitsInTemplate(template)) {
-        clickTemplateA(element);
+        clickTemplate(templateType, villageElement);
         return true;
       }
       return false;
@@ -92,23 +98,28 @@
 
       if (villageElement) {
         if (hasLootedAll(villageElement)) {
+          if (!validateAndSendTemplate(templateB, villageElement, TemplatesEnum.B)) {
+            validateAndSendTemplate(templateA, villageElement, TemplatesEnum.A);
+          }
+        } else {
+          validateAndSendTemplate(templateA, villageElement, TemplatesEnum.A);
         }
-      } else {
-        validateAndSendTemplateA(templateA, element);
+
+        const waitTime = randomTime(250, 350);
+        await delay(waitTime);
       }
+    };
 
-      const waitTime = randomTime(250, 350);
-      await delay(waitTime);
-    }
-  };
 
-  this.init = async () => {
-    console.log("starting farm");
+    this.init = async () => {
+      console.log("starting farm");
 
-    // start the page reload
-    reloadPage();
+      // start the page reload
+      reloadPage();
 
-    await sendAttack();
+      await sendAttack();
+    };
+
   };
 
   $(function () {
