@@ -47,11 +47,11 @@
 
       for (const unitName in units) {
         if (units.hasOwnProperty(unitName)) {
-        const unitQuantity = units[unitName];
+          const unitQuantity = units[unitName];
           const templateUnitQuantity = template[unitName];
 
           if (templateUnitQuantity && unitQuantity < templateUnitQuantity) {
-          return false;
+            return false;
           }
         }
       }
@@ -93,30 +93,29 @@
 
       if (villageElement) {
         if (hasLootedAll(villageElement)) {
-          }
-        } else {
-          validateAndSendTemplateA(templateA, element);
         }
-
-        const waitTime = randomTime(250, 350);
-        await delay(waitTime);
+      } else {
+        validateAndSendTemplateA(templateA, element);
       }
-    };
 
-    this.init = async () => {
-      console.log("starting farm");
+      const waitTime = randomTime(250, 350);
+      await delay(waitTime);
+    }
+  };
 
-      // start the page reload
-      reloadPage();
+  this.init = async () => {
+    console.log("starting farm");
 
-        await sendAttack();
-    };
+    // start the page reload
+    reloadPage();
+
+    await sendAttack();
   };
 
   $(function () {
     if (typeof Accountmanager !== 'undefined' && Accountmanager.farm) {
-    Accountmanager.farm.init();
-    SmartFarm.init();
+      Accountmanager.farm.init();
+      SmartFarm.init();
     } else {
       console.error('Accountmanager or farm not defined');
     }
