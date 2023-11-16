@@ -1,3 +1,9 @@
+
+// Should skip villages with wall?
+// true = yes
+// false = no
+const SKIP_WALL = true;
+
 (function () {
   'use strict';
 
@@ -50,6 +56,21 @@
       return true;
     };
 
+    const getWallLevel = (villageElement) => {
+      return (villageElement.querySelectorAll("td")[6]).innerHTML
+    }
+
+    const validateAndHideWall = (villageElement) => {
+      const wallLevel = getWallLevel(villageElement)
+      if (wallLevel !== '?' && parseInt(wallLevel) > 0) {
+        villageElement.style.display = 'none';
+
+        return true
+      }
+
+      return false
+    }
+
     const clickTemplate = (templateType, villageElement) => {
       const selector = `a.farm_icon.farm_icon_${templateType}`;
       const templateLink = villageElement.querySelector(selector);
@@ -77,13 +98,20 @@
     };
 
     const sendAttack = async () => {
+
       const templates = getTemplates();
       if (!templates) return;
 
       const [templateA, templateB] = Object.values(templates);
       const villageElement = getNextVillage();
 
+
       if (villageElement) {
+        if (SKIP_WALL) {
+          const result = validateAndHideWall(villageElement)
+          if (result) return;
+        }
+
         if (hasLootedAll(villageElement)) {
           if (!validateAndSendTemplate(templateB, villageElement, TemplatesEnum.B)) {
             validateAndSendTemplate(templateA, villageElement, TemplatesEnum.A);
@@ -104,7 +132,9 @@
       // start the page reload
       reloadPage();
 
-      await sendAttack();
+      setInterval(async () => {
+        await sendAttack();
+      }, 200)
     };
 
   };
