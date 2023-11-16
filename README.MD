@@ -11,6 +11,7 @@ Repositórios de scripts usados para TribalWars
 [@IagoReis](https://github.com/IagoReis)
 
 [@Dude29](https://github.com/Dude29)
+
 [@C7696](https://github.com/C7696)
 
 ## Sumario
