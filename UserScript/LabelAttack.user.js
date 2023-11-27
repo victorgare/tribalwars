@@ -11,7 +11,7 @@
 // ==/UserScript==
 
 // Função para verificar o conteúdo do elemento e redirecionar se necessário
-function checkIncomingsAndRedirect() {
+const checkIncomingsAndRedirect = () => {
     const incomingsElement = document.getElementById('incomings_amount');
     if (incomingsElement) {
         const incomingCount = parseInt(incomingsElement.innerText, 10); // Converte o texto para número
@@ -28,13 +28,13 @@ function checkIncomingsAndRedirect() {
 }
 
 // Função para configurar o MutationObserver
-function setupObserver() {
+const setupObserver = () => {
     const targetElement = document.getElementById('incomings_amount');
 
     if (targetElement) {
         // Cria uma instância do MutationObserver e passa uma função de callback
-        const observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(function (_) {
                 checkIncomingsAndRedirect();
             });
         });
@@ -53,10 +53,6 @@ function setupObserver() {
 
 // Inicia o processo
 setupObserver();
-
-
-
-
 
 function clickAllCheckboxesForAttack() {
     // Seleciona todos os elementos que contêm o texto 'Ataque'
@@ -81,7 +77,6 @@ function clickAllCheckboxesForAttack() {
 
 // Executa a função para marcar todos os checkboxes de Ataque
 clickAllCheckboxesForAttack();
-
 
 async function clickLabelButton() {
     const maxAttempts = 1; // Defina um número máximo de tentativas
