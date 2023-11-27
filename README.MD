@@ -245,7 +245,18 @@ Script que divide as tropas e envia para coleta
 - [Instalar Smart Farm](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/SmartFarm.user.js)
 
 ```javascript
-SKIP_WALL = false; // caso configurado para true, ira deixar de atacar aldeias com muralha
+const CONFIG = {
+  SKIP_WALL: true, // caso configurado para true, ira deixar de atacar aldeias com muralha
+  RELOAD_INTERVAL: { MIN: 240000, MAX: 420000 }, // intervalo para recarregar a pagina em milissegundos
+  ATTACK_INTERVAL: 1000, // intervalo entre ataques
+  WAIT_TIME: { MIN: 1500, MAX: 3500 }, // tempo que deve-se esperar antes de tentar enviar o próximo ataque
+};
 ```
 
 Script envia farm de maneira mais eficiente, enviando o template `A` para aldeia que não obtiveram saque cheio e template `B` para aldeias que retornaram com saque cheio.
+
+## Label Attacks
+
+- [Instalar Label Attacks](https://raw.githubusercontent.com/victorgare/tribalwars/master/UserScript/LabelAttack.user.js)
+
+Identifica ataques que são enviados em direção as suas aldeias

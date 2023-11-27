@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Smart Farm
-// @version      1.1
+// @version      1.2
 // @description  Smart farm script for better farming
 // @author       Victor Garé
 // @match        https://*.tribalwars.com.br/*&screen=am_farm*
@@ -11,152 +11,125 @@
 // @run-at document-idle
 // ==/UserScript==
 
-// Should skip villages with wall?
-// true = yes
-// false = no
-const SKIP_WALL = true;
 
+// Constants and Configuration
+const CONFIG = {
+  SKIP_WALL: true,
+  RELOAD_INTERVAL: { MIN: 240000, MAX: 420000 },
+  ATTACK_INTERVAL: 1000,
+  WAIT_TIME: { MIN: 1500, MAX: 3500 }
+};
+
+// Utility functions
+const delay = ms => new Promise(res => setTimeout(res, ms));
+const randomTime = (min, max) => Math.round(min + Math.random() * (max - min));
+
+// Main Script Execution
 (function () {
   'use strict';
 
-  const SmartFarm = new function () {
-    const TemplatesEnum = {
-      A: 'a',
-      B: 'b',
+  // Check for required dependencies
+  if (typeof Accountmanager === 'undefined' || typeof Accountmanager.farm === 'undefined') {
+    console.error('Accountmanager or farm not defined');
+    return;
+  }
+
+  class SmartFarm {
+    constructor() {
+      this.TemplatesEnum = {
+        A: 'a',
+        B: 'b',
+      };
     }
 
-    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-    const randomTime = (min, max) => {
-      return Math.round(min + Math.random() * (max - min));
-    };
-
-    const getTemplates = () => {
+    getTemplates() {
       return Accountmanager.farm.templates;
-    };
+    }
 
-    const getCurrentUnits = () => {
+    getCurrentUnits() {
       return Accountmanager.farm.current_units;
-    };
+    }
 
-    const getNextVillage = () => {
-      // query only rows that are visible!
-      return document.querySelector(
-        "tr[id^='village_']:not([style='display: none;'])"
-      );
-    };
+    getNextVillage() {
+      return document.querySelector("tr[id^='village_']:not([style='display: none;'])");
+    }
 
-    const hasLootedAll = (villageElement) => {
+    hasLootedAll(villageElement) {
       const lastLoot = villageElement.querySelector("img[src*='max_loot']");
       return lastLoot && lastLoot.getAttribute("src").endsWith("1.png");
-    };
-
-    const hasEnoughUnitsInTemplate = (template) => {
-      const units = getCurrentUnits();
-
-      for (const unitName in units) {
-        if (units.hasOwnProperty(unitName)) {
-          const unitQuantity = units[unitName];
-          const templateUnitQuantity = template[unitName];
-
-          if (templateUnitQuantity && unitQuantity < templateUnitQuantity) {
-            return false;
-          }
-        }
-      }
-
-      return true;
-    };
-
-    const getWallLevel = (villageElement) => {
-      return (villageElement.querySelectorAll("td")[6]).innerHTML
     }
 
-    const validateAndHideWall = (villageElement) => {
-      const wallLevel = getWallLevel(villageElement)
-      if (wallLevel !== '?' && parseInt(wallLevel) > 0) {
+    hasEnoughUnitsInTemplate(template) {
+      const units = this.getCurrentUnits();
+      return Object.entries(units).every(([unitName, unitQuantity]) => {
+        return !template[unitName] || unitQuantity >= template[unitName];
+      });
+    }
+
+    getWallLevel(villageElement) {
+      return villageElement.querySelectorAll("td")[6].innerHTML;
+    }
+
+    validateAndHideWall(villageElement) {
+      const wallLevel = this.getWallLevel(villageElement);
+      if (wallLevel !== '?' && parseInt(wallLevel, 10) > 0) {
         villageElement.style.display = 'none';
-
-        return true
-      }
-
-      return false
-    }
-
-    const clickTemplate = (templateType, villageElement) => {
-      const selector = `a.farm_icon.farm_icon_${templateType}`;
-      const templateLink = villageElement.querySelector(selector);
-
-      if (templateLink) {
-        templateLink.click();
-      }
-    };
-
-    const validateAndSendTemplate = (template, villageElement, templateType) => {
-      if (hasEnoughUnitsInTemplate(template)) {
-        clickTemplate(templateType, villageElement);
         return true;
       }
       return false;
-    };
+    }
 
-    const reloadPage = () => {
-      const reloadTime = randomTime(240000, 420000);
+    clickTemplate(templateType, villageElement) {
+      const selector = `a.farm_icon.farm_icon_${templateType}`;
+      const templateLink = villageElement.querySelector(selector);
+      templateLink?.click();
+    }
+
+    validateAndSendTemplate(template, villageElement, templateType) {
+      if (this.hasEnoughUnitsInTemplate(template)) {
+        this.clickTemplate(templateType, villageElement);
+        return true;
+      }
+      return false;
+    }
+
+    reloadPage() {
+      const reloadTime = randomTime(CONFIG.RELOAD_INTERVAL.MIN, CONFIG.RELOAD_INTERVAL.MAX);
       console.log(`will reload in ${reloadTime / 1000} seconds`);
       setTimeout(() => {
         console.log("reloading...");
         window.location.reload();
       }, reloadTime);
-    };
+    }
 
-    const sendAttack = async () => {
-
-      const templates = getTemplates();
+    async sendAttack() {
+      const templates = this.getTemplates();
       if (!templates) return;
 
       const [templateA, templateB] = Object.values(templates);
-      const villageElement = getNextVillage();
-
+      const villageElement = this.getNextVillage();
 
       if (villageElement) {
-        if (SKIP_WALL) {
-          const result = validateAndHideWall(villageElement)
-          if (result) return;
-        }
+        if (CONFIG.SKIP_WALL && this.validateAndHideWall(villageElement)) return;
 
-        if (hasLootedAll(villageElement)) {
-          if (!validateAndSendTemplate(templateB, villageElement, TemplatesEnum.B)) {
-            validateAndSendTemplate(templateA, villageElement, TemplatesEnum.A);
+        if (this.hasLootedAll(villageElement)) {
+          if (!this.validateAndSendTemplate(templateB, villageElement, this.TemplatesEnum.B)) {
+            this.validateAndSendTemplate(templateA, villageElement, this.TemplatesEnum.A);
           }
         } else {
-          validateAndSendTemplate(templateA, villageElement, TemplatesEnum.A);
+          this.validateAndSendTemplate(templateA, villageElement, this.TemplatesEnum.A);
         }
 
-        const waitTime = randomTime(250, 350);
-        await delay(waitTime);
+        await delay(randomTime(CONFIG.WAIT_TIME.MIN, CONFIG.WAIT_TIME.MAX));
       }
-    };
-
-
-    this.init = async () => {
-      console.log("starting farm");
-
-      // start the page reload
-      reloadPage();
-
-      setInterval(async () => {
-        await sendAttack();
-      }, 200)
-    };
-
-  };
-
-  $(function () {
-    if (typeof Accountmanager !== 'undefined' && Accountmanager.farm) {
-      Accountmanager.farm.init();
-      SmartFarm.init();
-    } else {
-      console.error('Accountmanager or farm not defined');
     }
-  });
+
+    init() {
+      console.log("starting farm");
+      this.reloadPage();
+      setInterval(async () => await this.sendAttack(), CONFIG.ATTACK_INTERVAL);
+    }
+  }
+
+  new SmartFarm().init();
 })();
