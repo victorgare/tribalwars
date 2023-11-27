@@ -124,10 +124,10 @@ const randomTime = (min, max) => Math.round(min + Math.random() * (max - min));
       }
     }
 
-    async init() {
+    init() {
       console.log("starting farm");
       this.reloadPage();
-      setInterval(() => this.sendAttack(), CONFIG.ATTACK_INTERVAL);
+      setInterval(async () => await this.sendAttack(), CONFIG.ATTACK_INTERVAL);
     }
   }
 
